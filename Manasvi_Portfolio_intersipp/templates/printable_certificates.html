@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Printable Certificates Checklist (Rolls 37–54)</h3>
+  <button class="btn btn-outline-primary" onclick="window.print()">Print</button>
+</div>
+
+<table class="table table-bordered" style="max-width:320px;">
+  <thead><tr><th>Roll</th><th>Present</th></tr></thead>
+  <tbody>
+    {% for roll, present_flag in present.items() %}
+      <tr>
+        <td>{{ roll }}</td>
+        <td class="text-center">{% if present_flag %}✓{% else %}&nbsp;{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

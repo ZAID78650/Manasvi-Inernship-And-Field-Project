@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Add New Record{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 700px; margin: auto; background: #f9f9fc;">
+        <h2 class="text-center mb-4" style="color: #2c3e50;">➕ Add New Record</h2>
+
+        <form method="POST" action="/add">
+            <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="role" class="form-label fw-bold">Role</label>
+                <select class="form-select" id="role" name="role" required>
+                    <option value="">-- Select Role --</option>
+                    <option>Intern</option>
+                    <option>Manager</option>
+                    <option>Supervisor</option>
+                    <option>HR</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label fw-bold">Joining Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Save Record</button>
+                <a href="/" class="btn btn-secondary px-4 ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

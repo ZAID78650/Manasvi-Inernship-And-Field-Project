@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Upload Diary Page</h2>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-3"><label>Roll</label><input name="roll" class="form-control" required></div>
+  <div class="col-md-4"><label>Title</label><input name="title" class="form-control"></div>
+  <div class="col-md-2"><label>Date</label><input type="date" name="date" class="form-control"></div>
+  <div class="col-md-3"><label>File (png/jpg/pdf)</label><input type="file" name="file" accept=".png,.jpg,.jpeg,.pdf" class="form-control" required></div>
+  <div class="col-12"><button class="btn btn-success">Upload</button></div>
+</form>
+
+<hr>
+<h5>Recent uploads</h5>
+<ul class="list-group">
+  {% for d in diaries %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+      <strong>Roll {{ d.roll }}</strong> — {{ d.title or 'Diary Page' }} — {{ d.date or (d.uploaded_at or '')[:10] }}
+    </div>
+    <div><a href="{{ url_for('uploaded_diary', filename=d.filename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">View</a></div>
+  </li>
+  {% else %}
+  <li class="list-group-item text-muted">No diary uploads yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

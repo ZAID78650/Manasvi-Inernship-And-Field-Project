@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Printable Field Project Diary (Rolls 37–54)</h3>
+  <button class="btn btn-outline-primary" onclick="window.print()">Print</button>
+</div>
+
+{% if diaries %}
+  {% for d in diaries %}
+    <div class="print-page mb-4 p-3 border rounded bg-white">
+      <h5>Roll: {{ d.roll }} — {{ d.title or 'Diary Page' }}</h5>
+      <p>Date: {{ d.date or (d.uploaded_at or '')[:10] }}</p>
+      <div>
+        {% set ext = d.filename.rsplit('.',1)[1].lower() %}
+        {% if ext == 'pdf' %}
+          <a href="{{ url_for('uploaded_diary', filename=d.filename) }}" target="_blank">PDF: open to print</a>
+        {% else %}
+          <img src="{{ url_for('uploaded_diary', filename=d.filename) }}" style="max-width:100%; height:auto;" />
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p class="text-muted">No diary pages for selected rolls (37–54).</p>
+{% endif %}
+{% endblock %}

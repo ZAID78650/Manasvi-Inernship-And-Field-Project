@@ -1,0 +1,29 @@
+:root{
+  --primary:#0b5f8a;
+  --accent:#ff8a65;
+  --muted:#6c757d;
+}
+body{
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(180deg, #fbfcff 0%, #f3f8ff 100%);
+  color:#1b2b3a;
+}
+.nav-top{
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 18px rgba(30,45,60,0.06);
+  padding: .6rem 0;
+}
+.nav-icon { color: var(--primary); }
+.logo { width:36px; height:36px; margin-right:8px; }
+.hero{
+  padding:60px 12px;
+  background: linear-gradient(90deg, rgba(11,95,138,0.06), rgba(255,138,101,0.03));
+  border-radius:12px;
+  box-shadow: 0 8px 30px rgba(11,95,138,0.04);
+}
+.card { border-radius:10px; }
+.print-page { background:white; }
+@media print{
+  .nav-top, .btn, .alert { display:none !important; }
+  body { background: white !important; }
+}

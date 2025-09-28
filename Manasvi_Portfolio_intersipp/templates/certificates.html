@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Upload Certificate</h2>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-3"><label>Roll</label><input name="roll" class="form-control" required></div>
+  <div class="col-md-4"><label>Certificate Type</label><input name="cert_type" class="form-control"></div>
+  <div class="col-md-3"><label>Issued By</label><input name="issued_by" class="form-control"></div>
+  <div class="col-md-2"><label>Date</label><input type="date" name="date" class="form-control"></div>
+  <div class="col-md-6"><label>File</label><input type="file" name="file" accept=".png,.jpg,.jpeg,.pdf" class="form-control" required></div>
+  <div class="col-12"><button class="btn btn-warning">Upload Certificate</button></div>
+</form>
+
+<hr>
+<h5>Recent certificates</h5>
+<table class="table table-sm">
+  <thead><tr><th>Roll</th><th>Type</th><th>Issued By</th><th>File</th></tr></thead>
+  <tbody>
+    {% for c in certs %}
+    <tr>
+      <td>{{ c.roll }}</td>
+      <td>{{ c.cert_type }}</td>
+      <td>{{ c.issued_by }}</td>
+      <td><a href="{{ url_for('uploaded_cert', filename=c.filename) }}" target="_blank">View</a></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4" class="text-muted">No certificates uploaded.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
